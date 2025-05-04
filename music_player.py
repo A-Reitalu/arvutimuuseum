@@ -40,3 +40,6 @@ def search_and_play():
         subprocess.run(['aplay', f"./music/{song}.wav"])
     else:
         print("Trigger file NOT found.")
+
+if __name__ == "__main__":
+    search_and_play()
