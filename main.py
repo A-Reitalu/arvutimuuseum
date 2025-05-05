@@ -2,6 +2,7 @@ import RPi.GPIO as GPIO
 import threading
 import time
 import serial
+import music_player
 
 floppy_liigutamise_nupp = 14
 Kõlari_eksponaadi_nupp = 15
@@ -36,7 +37,12 @@ PWM_pea = GPIO.PWM(HDD_pea_PWM, 1000)
 
 
 def main():
-    pass
+    try:
+        while True:
+            if GPIO.input(Kõlari_eksponaadi_nupp) == GPIO.LOW:
+                music_player.search_and_play()
+    except KeyboardInterrupt:
+        GPIO.cleanup()
 
 if __name__ == "__main__":
     main()
