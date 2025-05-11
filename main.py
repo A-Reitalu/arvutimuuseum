@@ -4,9 +4,9 @@ import time
 import serial
 import music_player
 
-# floppy_liigutamise_nupp = 14
-Kõlari_eksponaadi_nupp = 15
-# HDD_liigutamise_nupp = 18
+floppy_liigutamise_nupp = 21
+Kõlari_eksponaadi_nupp = 16
+HDD_liigutamise_nupp = 20
 # HDD_mootor1 = 17
 # HDD_mootor2 = 27
 # HDD_mootor_PWM = 24 
@@ -14,14 +14,17 @@ Kõlari_eksponaadi_nupp = 15
 # HDD_pea2 = 23
 # HDD_pea_PWM = 25
 
-#peame blokeerima floppy liigutamise eksponaadi selleks ajaks, kui sealt helifaile loetakse:
-# floppy_lugemise_block = threading.Lock()
+def button_callback(channel):
+    print(f"Button toggled on GPIO {channel}")
 
 GPIO.setmode(GPIO.BCM)
 # #nupud:
-# GPIO.setup(floppy_liigutamise_nupp, GPIO.IN, pull_up_down=GPIO.PUD_UP)
+GPIO.setup(floppy_liigutamise_nupp, GPIO.IN, pull_up_down=GPIO.PUD_UP)
 GPIO.setup(Kõlari_eksponaadi_nupp, GPIO.IN, pull_up_down=GPIO.PUD_UP)
-# GPIO.setup(HDD_liigutamise_nupp, GPIO.IN, pull_up_down=GPIO.PUD_UP)
+GPIO.setup(HDD_liigutamise_nupp, GPIO.IN, pull_up_down=GPIO.PUD_UP)
+GPIO.add_event_detect(floppy_liigutamise_nupp, GPIO.BOTH, callback=button_callback, bouncetime=200)
+GPIO.add_event_detect(Kõlari_eksponaadi_nupp, GPIO.BOTH, callback=button_callback, bouncetime=200)
+GPIO.add_event_detect(HDD_liigutamise_nupp, GPIO.BOTH, callback=button_callback, bouncetime=200)
 # #HDD mootori liigutamine:
 # GPIO.setup(HDD_mootor1, GPIO.OUT)
 # GPIO.setup(HDD_mootor2, GPIO.OUT)
@@ -35,13 +38,10 @@ GPIO.setup(Kõlari_eksponaadi_nupp, GPIO.IN, pull_up_down=GPIO.PUD_UP)
 # PWM_pea = GPIO.PWM(HDD_pea_PWM, 1000)
 #PWM_pea.start(0)
 
-
 def main():
     try:
-        while True:
-            if GPIO.input(Kõlari_eksponaadi_nupp) == GPIO.LOW:
-                music_player.search_and_play()
-    except KeyboardInterrupt:
+        input("Press Enter to exit\n")
+    finally:
         GPIO.cleanup()
 
 if __name__ == "__main__":
