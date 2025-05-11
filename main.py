@@ -1,7 +1,5 @@
 import RPi.GPIO as GPIO
 import threading
-import time
-import serial
 import music_player
 
 floppy_liigutamise_nupp = 21
@@ -16,6 +14,14 @@ HDD_liigutamise_nupp = 20
 
 def button_callback(channel):
     print(f"Button toggled on GPIO {channel}")
+    match channel:
+        case 21:
+            print("floppy liigutamine")
+        case 20:
+            print("HDD liigutamine")
+        case 16:
+            print("Kõlar")
+            threading.Thread(target=music_player.search_and_play, daemon=True).start()
 
 GPIO.setmode(GPIO.BCM)
 # #nupud:
