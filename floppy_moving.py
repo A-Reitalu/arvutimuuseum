@@ -20,7 +20,7 @@ def move_floppys():
 
     for i in range(1,79,19):
         send_and_read(f"r {i},1\r\n",ser)
-        time.sleep(2)
+        time.sleep(1)
         
     #switch the drive and turn off its motor:
     send_and_read('s 1\r\n',ser)
