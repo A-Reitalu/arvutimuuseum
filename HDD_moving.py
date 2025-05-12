@@ -19,8 +19,8 @@ GPIO.setup(ENB, GPIO.OUT)
 
 PWM_A = GPIO.PWM(ENA, 1000)
 PWM_A.start(0) # Start with 0% duty cycle
-#PWM_B = GPIO.PWM(ENB, 1000)
-#PWM_B.start(0)
+PWM_B = GPIO.PWM(ENB, 1000)
+PWM_B.start(100)
 
 def MoveHDD():
     try:
@@ -30,7 +30,7 @@ def MoveHDD():
             # Motor forward
             GPIO.output(MOTOR_HEAD1, GPIO.HIGH)
             GPIO.output(MOTOR_HEAD2, GPIO.LOW)
-            PWM_A.ChangeDutyCycle(30)
+            PWM_A.ChangeDutyCycle(100)
             print("Motor running forward...")
             time.sleep(1)
 
@@ -44,7 +44,7 @@ def MoveHDD():
             # Motor backward (if you want to test direction)
             GPIO.output(MOTOR_HEAD1, GPIO.LOW)
             GPIO.output(MOTOR_HEAD2, GPIO.HIGH)
-            PWM_A.ChangeDutyCycle(30)
+            PWM_A.ChangeDutyCycle(100)
             print("Motor running backward...")
             time.sleep(1)
 

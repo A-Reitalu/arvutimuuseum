@@ -2,6 +2,7 @@ import RPi.GPIO as GPIO
 import threading
 import music_player
 import floppy_moving
+import HDD_moving
 
 floppy_liigutamise_nupp = 21
 Kõlari_eksponaadi_nupp = 16
@@ -17,6 +18,7 @@ def button_callback(channel):
             threading.Thread(target=locked_floppy_moving, daemon=True).start()
         case 20:
             print("HDD liigutamine")
+            threading.Thread(target=HDD_moving.MoveHDD, daemon=True).start()
         case 16:
             print("Kõlar")
             leitud, laul = locked_floppy_speaker()
