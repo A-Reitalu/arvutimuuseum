@@ -12,7 +12,7 @@ def search_and_play():
     # === Connect to Arduino ===
     ser = serial.Serial(SERIAL_PORT, BAUDRATE, timeout=1)
     time.sleep(3)  # Wait for Arduino to reboot
-
+    
     # === Send "dir" command to list floppy files ===
     ser.write(b'dir\r\n')
 
