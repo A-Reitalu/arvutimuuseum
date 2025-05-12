@@ -60,4 +60,5 @@ def MoveHDD():
         GPIO.output(MOTOR_HEAD2, GPIO.LOW)
         GPIO.cleanup()
 
-
+if __name__ == "__main__":
+    MoveHDD()
