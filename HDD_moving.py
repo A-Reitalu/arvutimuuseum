@@ -24,6 +24,8 @@ PWM_A.start(0) # Start with 0% duty cycle
 
 def MoveHDD():
     try:
+        GPIO.output(MOTOR_SPIN3, GPIO.HIGH)
+        GPIO.output(MOTOR_SPIN4, GPIO.LOW)
         while True:
             # Motor forward
             GPIO.output(MOTOR_HEAD1, GPIO.HIGH)
@@ -58,6 +60,8 @@ def MoveHDD():
         print("Stopping motor.")
         GPIO.output(MOTOR_HEAD1, GPIO.LOW)
         GPIO.output(MOTOR_HEAD2, GPIO.LOW)
+        GPIO.output(MOTOR_SPIN3, GPIO.LOW)
+        GPIO.output(MOTOR_SPIN4, GPIO.LOW)
         GPIO.cleanup()
 
 if __name__ == "__main__":
