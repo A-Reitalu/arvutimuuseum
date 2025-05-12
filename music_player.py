@@ -2,8 +2,10 @@ import serial
 import time
 import subprocess
 
+def play_song(song):
+    subprocess.run(['aplay', f"./music/{song}.wav"])
 
-def search_and_play():
+def search_for_song():
     Trigger_words = ["CRZYFROG","BADPIGS","DAISYBEL","HLGEHALL"]
     # === Configuration ===
     SERIAL_PORT = '/dev/ttyACM0'
@@ -12,7 +14,7 @@ def search_and_play():
     # === Connect to Arduino ===
     ser = serial.Serial(SERIAL_PORT, BAUDRATE, timeout=1)
     time.sleep(3)  # Wait for Arduino to reboot
-    
+
     # === Send "dir" command to list floppy files ===
     ser.write(b'dir\r\n')
 
@@ -30,16 +32,16 @@ def search_and_play():
                 print(song)
                 break
         if line == "A:>" or (time.time() - start > 5):  # End when prompt returns or timeout
+            song = ""
             break
 
     ser.close()
-
-    # === Play audio if file is found ===
-    if found:
-        print("Trigger file found! Playing sound...")
-        subprocess.run(['aplay', f"./music/{song}.wav"])
-    else:
-        print("Trigger file NOT found.")
+    return found,song
 
 if __name__ == "__main__":
-    search_and_play()
+    leitud, laul = search_for_song()
+    if leitud:
+        print("Trigger file found! Playing sound...")
+        play_song(laul)
+    else:
+        print("Trigger file NOT found.")
