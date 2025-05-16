@@ -2,6 +2,7 @@ import RPi.GPIO as GPIO
 import threading
 import music_player
 import floppy_moving
+import time
 
 floppy_liigutamise_nupp = 21
 Kõlari_eksponaadi_nupp = 16
@@ -46,7 +47,10 @@ GPIO.add_event_detect(HDD_liigutamise_nupp, GPIO.BOTH, callback=button_callback,
 
 def main():
     try:
-        input("Press Enter to exit\n")
+        while True:
+            time.sleep(1)
+    except KeyboardInterrupt:
+        GPIO.cleanup()
     finally:
         GPIO.cleanup()
 

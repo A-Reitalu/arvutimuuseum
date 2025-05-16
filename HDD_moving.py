@@ -19,8 +19,8 @@ GPIO.setup(ENB, GPIO.OUT)
 
 PWM_A = GPIO.PWM(ENA, 1000)
 PWM_A.start(0) # Start with 0% duty cycle
-#PWM_B = GPIO.PWM(ENB, 1000)
-#PWM_B.start(0)
+PWM_B = GPIO.PWM(ENB, 1000)
+PWM_B.start(100)
 
 def MoveHDD():
     try:
