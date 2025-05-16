@@ -2,11 +2,8 @@ import RPi.GPIO as GPIO
 import threading
 import music_player
 import floppy_moving
-<<<<<<< HEAD
 import time
-=======
 import HDD_moving
->>>>>>> c8858201ec634ada97f83ff30d6bfeabe2f33230
 
 floppy_liigutamise_nupp = 21
 Kõlari_eksponaadi_nupp = 16
