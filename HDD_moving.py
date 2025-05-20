@@ -63,14 +63,12 @@ def MoveHDD():
         GPIO.output(MOTOR_HEAD2, GPIO.LOW)
         GPIO.output(MOTOR_SPIN3, GPIO.LOW)
         GPIO.output(MOTOR_SPIN4, GPIO.LOW)
-        GPIO.cleanup()
     finally:
         print("Stopping motor.")
         GPIO.output(MOTOR_HEAD1, GPIO.LOW)
         GPIO.output(MOTOR_HEAD2, GPIO.LOW)
         GPIO.output(MOTOR_SPIN3, GPIO.LOW)
         GPIO.output(MOTOR_SPIN4, GPIO.LOW)
-        GPIO.cleanup()
 
 if __name__ == "__main__":
     MoveHDD()
