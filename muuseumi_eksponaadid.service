@@ -1,0 +1,14 @@
+[Unit]
+Description=Muuseumi eksponaadi peakood
+After=network.target
+
+[Service]
+ExecStart=/usr/bin/python3 /home/arvutimuuseum/Documents/arvutimuuseum/main.py
+WorkingDirectory=/home/arvutimuuseum/Documents/arvutimuuseum
+StandardOutput=append:/home/arvutimuuseum/log.txt
+StandardError=append:/home/arvutimuuseum/log.txt
+Restart=always
+User=arvutimuuseum
+
+[Install]
+WantedBy=multi-user.target
