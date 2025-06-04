@@ -26,7 +26,7 @@ def MoveHDD():
     try:
         GPIO.output(MOTOR_SPIN3, GPIO.HIGH)
         GPIO.output(MOTOR_SPIN4, GPIO.LOW)
-        for i in range(3):
+        for i in range(2):
             for j in range(4):
                 # Motor forward
                 GPIO.output(MOTOR_HEAD1, GPIO.HIGH)
