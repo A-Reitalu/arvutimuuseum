@@ -26,35 +26,57 @@ def MoveHDD():
     try:
         GPIO.output(MOTOR_SPIN3, GPIO.HIGH)
         GPIO.output(MOTOR_SPIN4, GPIO.LOW)
-        for i in range(5):
-            # Motor forward
-            GPIO.output(MOTOR_HEAD1, GPIO.HIGH)
-            GPIO.output(MOTOR_HEAD2, GPIO.LOW)
-            PWM_A.ChangeDutyCycle(50)
-            print("Motor running forward...")
-            time.sleep(1)
+        for i in range(3):
+            for j in range(4):
+                # Motor forward
+                GPIO.output(MOTOR_HEAD1, GPIO.HIGH)
+                GPIO.output(MOTOR_HEAD2, GPIO.LOW)
+                PWM_A.ChangeDutyCycle(50)
+                print("Motor running forward...")
+                time.sleep(0.2)
 
-            # Motor stop
-            GPIO.output(MOTOR_HEAD1, GPIO.LOW)
-            GPIO.output(MOTOR_HEAD2, GPIO.LOW)
-            PWM_A.ChangeDutyCycle(0)
-            print("Motor stopped.")
-            time.sleep(2)
+                # Motor stop
+                GPIO.output(MOTOR_HEAD1, GPIO.LOW)
+                GPIO.output(MOTOR_HEAD2, GPIO.LOW)
+                PWM_A.ChangeDutyCycle(0)
+                print("Motor stopped.")
+                time.sleep(1)
 
-            # Motor backward (if you want to test direction)
-            GPIO.output(MOTOR_HEAD1, GPIO.LOW)
-            GPIO.output(MOTOR_HEAD2, GPIO.HIGH)
-            PWM_A.ChangeDutyCycle(50)
-            print("Motor running backward...")
-            time.sleep(1)
+                # Motor backward (if you want to test direction)
+                GPIO.output(MOTOR_HEAD1, GPIO.LOW)
+                GPIO.output(MOTOR_HEAD2, GPIO.HIGH)
+                PWM_A.ChangeDutyCycle(50)
+                print("Motor running backward...")
+                time.sleep(0.2)
 
-            # Motor stop
-            GPIO.output(MOTOR_HEAD1, GPIO.LOW)
-            GPIO.output(MOTOR_HEAD2, GPIO.LOW)
-            PWM_A.ChangeDutyCycle(0)
-            print("Motor stopped.")
-            time.sleep(2)
-        
+                # Motor stop
+                GPIO.output(MOTOR_HEAD1, GPIO.LOW)
+                GPIO.output(MOTOR_HEAD2, GPIO.LOW)
+                PWM_A.ChangeDutyCycle(0)
+                print("Motor stopped.")
+                time.sleep(1)
+
+            for k in range(3):
+                GPIO.output(MOTOR_HEAD1, GPIO.HIGH)
+                GPIO.output(MOTOR_HEAD2, GPIO.LOW)
+                PWM_A.ChangeDutyCycle(50)
+                print("Motor running forward...")
+                time.sleep(0.2)
+            
+                                # Motor backward (if you want to test direction)
+                GPIO.output(MOTOR_HEAD1, GPIO.LOW)
+                GPIO.output(MOTOR_HEAD2, GPIO.HIGH)
+                PWM_A.ChangeDutyCycle(50)
+                print("Motor running backward...")
+                time.sleep(0.2)
+
+                GPIO.output(MOTOR_HEAD1, GPIO.LOW)
+                GPIO.output(MOTOR_HEAD2, GPIO.LOW)
+                PWM_A.ChangeDutyCycle(0)
+                print("Motor stopped.")
+                time.sleep(1)
+
+
 
     except KeyboardInterrupt:
         # Graceful exit
